@@ -1,0 +1,1 @@
+# Short ALX Front-End Specialization task
