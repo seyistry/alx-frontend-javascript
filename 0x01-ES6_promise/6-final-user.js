@@ -5,8 +5,6 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   const myPromise = Promise.all([
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
-  ])
-    .then((values) => values)
-    .catch((error) => error.message);
-  return myPromise;
+  ]);
+  return [myPromise];
 }
