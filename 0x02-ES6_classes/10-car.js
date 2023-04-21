@@ -6,7 +6,8 @@ export default class Car {
     this._color = color;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   cloneCar() {
-    return this;
+    return new Car();
   }
 }
