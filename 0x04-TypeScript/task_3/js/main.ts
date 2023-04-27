@@ -1,64 +1,25 @@
-interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
-}
+/// <reference types="./crud.d.ts" />
+import { RowElement, RowID } from './interface';
+import * as CRUD from './crud';
 
-interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
-}
+const row: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+};
 
-class Director implements DirectorInterface {
-  workFromHome() {
-    return 'Working from home';
-  }
-  getCoffeeBreak() {
-    return 'Getting a coffee break';
-  }
-  workDirectorTasks() {
-    return 'Getting to director tasks';
-  }
-}
+const newRowID: RowID = CRUD.insertRow(row);
 
-class Teacher implements TeacherInterface {
-  workFromHome() {
-    return 'Cannot work from home';
-  }
-  getCoffeeBreak() {
-    return 'Cannot have a break';
-  }
-  workTeacherTasks() {
-    return 'Getting to work';
-  }
-}
+const obj = { firstName: 'Guillaume', lastName: 'Salva' };
+CRUD.insertRow(obj);
+// Insert row {firstName: "Guillaume", lastName: "Salva"}
 
-function createEmployee(salary: number | string): Director | Teacher {
-  if (+salary < 500) {
-    return new Teacher();
-  } else return new Director();
-}
+const updatedRow: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+  age: 23,
+};
+CRUD.updateRow(newRowID, updatedRow);
+// Update row 125 {firstName: "Guillaume", lastName: "Salva", age: 23}
 
-function isDirector(employee: Director | Teacher): employee is Director {
-  return typeof (employee as Director) !== 'undefined';
-}
-
-function executeWork(employee: Director | Teacher) {
-  if (isDirector(employee)) {
-    employee.workDirectorTasks();
-  } else {
-    employee.workTeacherTasks();
-  }
-}
-
-type Subjects = 'Math' | 'History';
-
-function teachClass(todayClass: Subjects): string {
-  if (todayClass === 'Math') {
-    return 'Teaching Math';
-  }
-  return 'Teaching History';
-}
-
-console.log(teachClass("Math"));
+CRUD.deleteRow(125);
+// Delete row id 125
