@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (startString.length === 0 || startString === null) return '';
+  if (startString.length === 0 || startString === undefined) return '';
   const word = [];
   for (const item of set) {
     if (item) {
